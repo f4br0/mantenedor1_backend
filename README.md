@@ -7,6 +7,7 @@ Afterwards you have to run mongdb docker image and start the project.
 
 ```dockerfile
  docker run --name mongodb -p 27017:27017 -d mongo:latest
+ gradle bootRun
 ```
 When it comes to API Documentation go to Swagger page.
 ```
