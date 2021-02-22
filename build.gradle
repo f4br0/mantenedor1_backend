@@ -1,0 +1,51 @@
+plugins {
+    id 'org.springframework.boot' version '2.3.1.RELEASE'
+    id 'io.spring.dependency-management' version '1.0.9.RELEASE'
+    id 'java'
+    id 'idea'
+    id 'com.github.ben-manes.versions' version '0.28.0'
+}
+
+group = 'com.dwr'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = JavaVersion.VERSION_11
+targetCompatibility = JavaVersion.VERSION_11
+
+wrapper {
+    distributionType = Wrapper.DistributionType.ALL
+    gradleVersion = '6.2.2'
+}
+
+springBoot {
+    mainClassName 'com.dwr.task.Application'
+}
+
+repositories {
+    jcenter()
+    maven { url 'http://oss.jfrog.org/artifactory/oss-snapshot-local/' }
+}
+
+dependencies {
+
+    implementation 'org.hibernate.validator:hibernate-validator:6.0.10.Final'
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
+
+    implementation 'org.springframework.boot:spring-boot-starter-data-mongodb-reactive'
+    implementation 'org.springframework.boot:spring-boot-starter-webflux'
+
+    testImplementation('org.springframework.boot:spring-boot-starter-test') {
+        exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+    }
+    testImplementation 'de.flapdoodle.embed:de.flapdoodle.embed.mongo'
+    compileOnly 'org.projectlombok:lombok:1.18.12'
+    annotationProcessor 'org.projectlombok:lombok:1.18.8'
+    testImplementation 'io.projectreactor:reactor-test'
+
+    implementation "io.springfox:springfox-boot-starter:3.0.0"
+    compile 'io.springfox:springfox-swagger-ui:3.0.0'
+
+}
+
+test {
+    useJUnitPlatform()
+}
